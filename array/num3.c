@@ -29,13 +29,13 @@ int main()
 				} else if ((j == N - 1) && (i != N - 1)){
 					printf("%d\n", arr[i][j]);
 				} else {
-                    printf("%d", arr[i][j]);
-                }
+				    printf("%d", arr[i][j]);
+				}
 			}
 		}
-        for (int i = 0; i < N; i++){
-            free(arr[i]);
-        }
+		for (int i = 0; i < N; i++){
+		    free(arr[i]);
+		}
 		free(arr);
     }
     
