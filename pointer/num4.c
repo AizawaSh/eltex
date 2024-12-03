@@ -15,8 +15,8 @@ int main() {
             break;
         }
         if (c != '\n') {
-            len_str++;
             str[len_str] = c;
+            len_str++;
         }
     }
     c = '\0';
