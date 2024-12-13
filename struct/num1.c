@@ -31,10 +31,9 @@ int main()
             int flag_1 = 1;
             struct abonent new_abonent;
             char new_name[100];
-            char new_second_name[100];
-            char new_tel[100];
+            
             fgets(new_name, sizeof(new_name), stdin);
-            if (strlen(new_name) >= 11 || new_name[0] == '\n'){
+            if (strlen(new_name) >= 11 || new_name[0] == '\n' || strchr(new_name, ' ')){
                 printf("ERROR\n");
                 flag_1 = 0;
                 continue;
@@ -42,8 +41,9 @@ int main()
             new_name[strcspn(new_name, "\n")] = '\0';
             strcpy(new_abonent.name, new_name);
             if (flag_1) {
+                char new_second_name[100];
                 fgets(new_second_name, sizeof(new_second_name), stdin);
-                if (strlen(new_second_name) >= 11 || new_second_name[0] == '\n'){
+                if (strlen(new_second_name) >= 11 || new_second_name[0] == '\n' || strchr(new_second_name, ' ')){
                     printf("ERROR\n");
                     flag_1 = 0;
                     continue;
@@ -52,10 +52,10 @@ int main()
                 strcpy(new_abonent.second_name, new_second_name);
             }
             if (flag_1) {
+                char new_tel[100];
                 fgets(new_tel, sizeof(new_tel), stdin);
-                if (strlen(new_tel) >= 11 || new_tel[0] == '\n'){
+                if (strlen(new_tel) >= 11 || new_tel[0] == '\n' || strchr(new_tel, ' ')){
                     printf("ERROR\n");
-                    flag_1 = 0;
                     continue;
                 }
                 new_tel[strcspn(new_tel, "\n")] = '\0';
@@ -67,7 +67,7 @@ int main()
         if (comand == 2 && len_abonent != 0) {
             char name[100];
             fgets(name, sizeof(name), stdin);
-            if (strlen(name) >= 11 || name[0] == '\n'){
+            if (strlen(name) >= 11 || name[0] == '\n' || strchr(name, ' ')){
                 printf("ERROR\n");
                 continue;
             }
@@ -96,7 +96,7 @@ int main()
         if (comand == 3 && len_abonent != 0) {
             char name[100];
             fgets(name, sizeof(name), stdin);
-            if (strlen(name) >= 11 || name[0] == '\n'){
+            if (strlen(name) >= 11 || name[0] == '\n' || strchr(name, ' ')){
                 printf("ERROR\n");
                 continue;
             }
