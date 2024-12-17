@@ -22,47 +22,41 @@ int main()
         if (scanf("%d%c", &comand, &c) != 2 || c != '\n' || comand > 5 || comand < 1) {
             printf("ERROR\n");
             while (getchar() != '\n');
-            continue;
         }
         if (comand == 1 && len_abonent == 100) {
             printf("ERROR\n");
             continue;
         } else if (comand == 1) {
-            int flag_1 = 1;
             struct abonent new_abonent;
             char new_name[100];
             
             fgets(new_name, sizeof(new_name), stdin);
             if (strlen(new_name) >= 11 || new_name[0] == '\n' || strchr(new_name, ' ')){
                 printf("ERROR\n");
-                flag_1 = 0;
                 continue;
             }
             new_name[strcspn(new_name, "\n")] = '\0';
             strcpy(new_abonent.name, new_name);
-            if (flag_1) {
-                char new_second_name[100];
-                fgets(new_second_name, sizeof(new_second_name), stdin);
-                if (strlen(new_second_name) >= 11 || new_second_name[0] == '\n' || strchr(new_second_name, ' ')){
-                    printf("ERROR\n");
-                    flag_1 = 0;
-                    continue;
-                }
-                new_second_name[strcspn(new_second_name, "\n")] = '\0';
-                strcpy(new_abonent.second_name, new_second_name);
+
+            char new_second_name[100];
+            fgets(new_second_name, sizeof(new_second_name), stdin);
+            if (strlen(new_second_name) >= 11 || new_second_name[0] == '\n' || strchr(new_second_name, ' ')){
+                printf("ERROR\n");
+                continue;
             }
-            if (flag_1) {
-                char new_tel[100];
-                fgets(new_tel, sizeof(new_tel), stdin);
-                if (strlen(new_tel) >= 11 || new_tel[0] == '\n' || strchr(new_tel, ' ')){
-                    printf("ERROR\n");
-                    continue;
-                }
-                new_tel[strcspn(new_tel, "\n")] = '\0';
-                strcpy(new_abonent.tel, new_tel);
-                book[len_abonent] = new_abonent;
-                len_abonent++;
-            }            
+            new_second_name[strcspn(new_second_name, "\n")] = '\0';
+            strcpy(new_abonent.second_name, new_second_name);
+
+            char new_tel[100];
+            fgets(new_tel, sizeof(new_tel), stdin);
+            if (strlen(new_tel) >= 11 || new_tel[0] == '\n' || strchr(new_tel, ' ')){
+                printf("ERROR\n");
+                continue;
+            }
+            new_tel[strcspn(new_tel, "\n")] = '\0';
+            strcpy(new_abonent.tel, new_tel);
+            book[len_abonent] = new_abonent;
+            len_abonent++;        
         }
         if (comand == 2 && len_abonent != 0) {
             char name[100];
@@ -72,11 +66,12 @@ int main()
                 continue;
             }
             name[strcspn(name, "\n")] = '\0';
+            int flag_found = 0;
             for (int i = 0; i < len_abonent; i++) {
                 if (strcmp(book[i].name, name) != 0) {
                     continue;
                 }
-                
+                flag_found = 1;
                 for (int j = 0; j < 10; j++){
                     book[i].name[j] = 0;
                     book[i].second_name[j] = 0;
@@ -90,6 +85,9 @@ int main()
                 }
                 i--;
                 len_abonent--;
+            }
+            if (!flag_found) {
+                printf("ERROR\n");
             }
             continue;
         }
